@@ -1,0 +1,34 @@
+﻿@startuml
+!pragma layout smetana
+
+class RoomType {
++Id : int
+    +Name : string
+    +Description : string
+}
+class Room {
++Id : int
+    +RoomTypeId : int
+    +RoomNumber : int
+    +PricePerNight : decimal
+    +SizeM2 : int
+    +Floor : int
+    
+}
+class Booking {
++Id : int
+    +CheckIn : DateTime
+    +CheckOut : DateTime
+    +TotalPrice() : decimal
+    +GuestId : int
+    +RoomId : int
+}
+class Guest {
++Id : int
+    +Name : string
+    +Email : string
+}
+Guest "1" --> "*" Booking : gör
+Room "1" --> "*" Booking
+RoomType "1" --> "*" Room
+@enduml

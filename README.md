@@ -30,7 +30,12 @@ classDiagram
 
 Utvärdera fälten i `Guest` ett i taget. Vad bygger du in, och varför?
 
->
+- Id: Nyckel som databasen behöver och säger inget om personen.
+- Name: Namn i bokningssyfte.
+- Email: Lade till email då det kan vara bra att ha i bokningssyfte och få bekräftelse.
+- HairColor: Behövs ej då det saknar syfte är även Dataminimering
+- HeightCm: Behövs ej då det saknar syfte (om inte gästen är längre än sängarna kanske) även Dataminimering
+- Religion: Syfte saknas definitivt och är känsliga personuppgifter enligt GDPR artikel 9.
 
 ## Designmönster
 
