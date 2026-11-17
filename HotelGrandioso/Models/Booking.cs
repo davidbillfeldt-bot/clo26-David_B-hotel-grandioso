@@ -12,7 +12,6 @@ public class Booking
     public int GuestId { get; set; }
     public Guest Guest { get; set; } = null!;
     
-    public List<Booking> Bookings { get; set; } = new();
     // Priset räknas ut i stället för att sparas, så det alltid stämmer
     // även om rummets pris eller datumen ändras
     public decimal TotalPrice()
