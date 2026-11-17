@@ -4,6 +4,7 @@ obj/
 *.user
 .vs/
 .idea/
+*.db
 
 # Hemligheter: connectionstrings och lösenord ska INTE in i koden
 .env
