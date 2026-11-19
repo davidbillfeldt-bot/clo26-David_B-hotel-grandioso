@@ -9,12 +9,12 @@ public class HotelContext : DbContext
     public DbSet<Room> Rooms => Set<Room>();
     public DbSet<Guest> Guests => Set<Guest>();
     public DbSet<Booking> Bookings => Set<Booking>();
-    
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        string connectionString = Environment.GetEnvironmentVariable("HOTEL_DB")
-                                  ?? "Data Source=hotel.db";
+        var connectionString = Environment.GetEnvironmentVariable("HOTEL_DB")
+                               ?? "Data Source=hotel.db";
         options.UseSqlite(connectionString);
     }
 
@@ -40,8 +40,8 @@ public class HotelContext : DbContext
             new Room { Id = 11, RoomNumber = 301, Floor = 3, SizeM2 = 120, PricePerNight = 1200, RoomTypeId = 1 },
             new Room { Id = 12, RoomNumber = 302, Floor = 3, SizeM2 = 120, PricePerNight = 1200, RoomTypeId = 1 },
             new Room { Id = 13, RoomNumber = 303, Floor = 3, SizeM2 = 120, PricePerNight = 1200, RoomTypeId = 1 },
-            new Room { Id = 14, RoomNumber = 304, Floor = 3, SizeM2 = 180, PricePerNight = 2800, RoomTypeId = 2},
-            new Room { Id = 15, RoomNumber = 305, Floor = 3, SizeM2 = 220, PricePerNight = 3500, RoomTypeId = 3}
-            );
+            new Room { Id = 14, RoomNumber = 304, Floor = 3, SizeM2 = 180, PricePerNight = 2800, RoomTypeId = 2 },
+            new Room { Id = 15, RoomNumber = 305, Floor = 3, SizeM2 = 220, PricePerNight = 3500, RoomTypeId = 3 }
+        );
     }
 }

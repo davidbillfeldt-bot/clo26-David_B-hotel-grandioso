@@ -2,12 +2,12 @@
 
 Här ligger själva programmet, Hotel Grandioso. Varje mapp har en egen README som beskriver vad som ska ligga där.
 
-| Mapp | Innehåll |
-|------|----------|
-| `Models/` | Klasser som representerar det ni hanterar (entiteter) |
-| `Data/` | Databaskoppling och kontext (EF Core eller MongoDB) |
+| Mapp        | Innehåll                                                          |
+|-------------|-------------------------------------------------------------------|
+| `Models/`   | Klasser som representerar det ni hanterar (entiteter)             |
+| `Data/`     | Databaskoppling och kontext (EF Core eller MongoDB)               |
 | `Services/` | Logik som kopplar ihop modeller och data, till exempel Repository |
-| `UI/` | Gränssnittet: konsol, Blazor eller MVC |
+| `UI/`       | Gränssnittet: konsol, Blazor eller MVC                            |
 
 `Program.cs` är startpunkten. Den ska vara kort och bara koppla ihop delarna.
 

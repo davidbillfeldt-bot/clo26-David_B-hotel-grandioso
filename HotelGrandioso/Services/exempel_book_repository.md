@@ -1,6 +1,7 @@
 # Exempel: ett Repository (BookRepository)
 
-Det här exemplet visar Repository-mönstret. Resten av programmet pratar med ett interface, och bara repositoryt vet hur böckerna sparas.
+Det här exemplet visar Repository-mönstret. Resten av programmet pratar med ett interface, och bara repositoryt vet hur
+böckerna sparas.
 
 Först interfacet, som beskriver vad som går att göra:
 
@@ -12,7 +13,8 @@ public interface IBookRepository
 }
 ```
 
-Reflektion: interfacet säger *vad*, inte *hur*. Ett annat repository, till exempel med MongoDB, kan implementera samma interface utan att resten av koden ändras.
+Reflektion: interfacet säger *vad*, inte *hur*. Ett annat repository, till exempel med MongoDB, kan implementera samma
+interface utan att resten av koden ändras.
 
 Sedan implementationen med EF Core:
 
@@ -33,7 +35,8 @@ public class BookRepository : IBookRepository
 }
 ```
 
-Reflektion: klassen tar emot sin kontext i konstruktorn. Då kan den bytas ut eller testas utan att skapa en riktig databas.
+Reflektion: klassen tar emot sin kontext i konstruktorn. Då kan den bytas ut eller testas utan att skapa en riktig
+databas.
 
 Och metoden som sparar. Här kan något gå fel, så den behöver felhantering:
 

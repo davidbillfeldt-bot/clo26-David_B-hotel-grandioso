@@ -31,7 +31,8 @@ public void Lend()
 }
 ```
 
-Reflektion: vakten gör att boken aldrig kan hamna i ett ogiltigt läge. Det är ett exempel på att en klass ansvarar för sina egna regler.
+Reflektion: vakten gör att boken aldrig kan hamna i ett ogiltigt läge. Det är ett exempel på att en klass ansvarar för
+sina egna regler.
 
 ## Hela koden
 

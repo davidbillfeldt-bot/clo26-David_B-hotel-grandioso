@@ -29,7 +29,7 @@ public class HotelRepository : IHotelRepository
             .OrderBy(b => b.CheckIn)
             .ToList();
     }
-    
+
     public Booking AddBooking(Guest guest, Room room, DateTime checkIn, DateTime checkOut)
     {
         var booking = new Booking
@@ -39,16 +39,16 @@ public class HotelRepository : IHotelRepository
             CheckIn = checkIn,
             CheckOut = checkOut
         };
-        
-            _context.Bookings.Add(booking);
-            _context.SaveChanges();
+
+        _context.Bookings.Add(booking);
+        _context.SaveChanges();
 
         return booking;
     }
 
     public bool CancelBooking(int bookingId)
     {
-        Booking? booking = _context.Bookings.Find(bookingId);
+        var booking = _context.Bookings.Find(bookingId);
         if (booking == null) return false;
         _context.Bookings.Remove(booking);
         _context.SaveChanges();

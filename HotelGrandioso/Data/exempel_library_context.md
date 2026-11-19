@@ -1,6 +1,7 @@
 # Exempel: en databaskontext (EF Core)
 
-Det här exemplet visar hur en `DbContext` kopplar klasser till en databas. Det behövs paketet `Microsoft.EntityFrameworkCore.Sqlite` (`dotnet add package Microsoft.EntityFrameworkCore.Sqlite`).
+Det här exemplet visar hur en `DbContext` kopplar klasser till en databas. Det behövs paketet
+`Microsoft.EntityFrameworkCore.Sqlite` (`dotnet add package Microsoft.EntityFrameworkCore.Sqlite`).
 
 Först en `DbSet` som berättar för EF Core att det finns en tabell med böcker:
 
@@ -33,7 +34,8 @@ protected override void OnConfiguring(DbContextOptionsBuilder options)
 }
 ```
 
-Reflektion: felet syns direkt vid start, inte senare när något försöker spara. Värdet kan vara `Data Source=bibliotek.db`.
+Reflektion: felet syns direkt vid start, inte senare när något försöker spara. Värdet kan vara
+`Data Source=bibliotek.db`.
 
 ## Hela koden
 

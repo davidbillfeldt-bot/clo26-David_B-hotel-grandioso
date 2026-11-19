@@ -1,4 +1,5 @@
-﻿using HotelGrandioso.Services;
+﻿using HotelGrandioso.Models;
+using HotelGrandioso.Services;
 
 namespace HotelGrandioso.UI;
 
@@ -13,10 +14,11 @@ public class ConsoleMenu
 
     public void Run()
     {
-        bool running = true;
+        var running = true;
 
         while (running)
         {
+            Console.WriteLine();
             Console.WriteLine("=== Hotel Grandioso ===");
             Console.WriteLine("1. Boka rum");
             Console.WriteLine("2. Avboka");
@@ -25,7 +27,7 @@ public class ConsoleMenu
             Console.WriteLine("5. Avsluta");
             Console.Write("Välj: ");
 
-            string? val = Console.ReadLine();
+            var val = Console.ReadLine();
 
             switch (val)
             {
@@ -55,9 +57,8 @@ public class ConsoleMenu
     private void ShowRooms()
     {
         foreach (var room in _repository.GetAllRooms())
-        {
-            Console.WriteLine($" {room.RoomNumber} - {room.RoomType.Name} {room.SizeM2}m² {room.PricePerNight:N0} kr/natt");
-        }
+            Console.WriteLine(
+                $" {room.RoomNumber} - {room.RoomType.Name} {room.SizeM2}m² {room.PricePerNight:N0} kr/natt");
     }
 
     private void ShowBookings()
@@ -70,29 +71,79 @@ public class ConsoleMenu
         }
 
         foreach (var b in bookings)
-        {
             Console.WriteLine($" #{b.Id} {b.Guest.Name}, rum {b.Room.RoomNumber}, " +
                               $"{b.CheckIn:yyyy-MM-dd} till {b.CheckOut:yyyy-MM-dd}, {b.TotalPrice():N0} kr");
-        }
     }
-    
+
     private void CancelBooking()
     {
         ShowBookings();
         Console.Write("Bokningsnummer att avboka: ");
 
-        if (!int.TryParse(Console.ReadLine(), out int id))
+        if (!int.TryParse(Console.ReadLine(), out var id))
         {
             Console.WriteLine("Skriv ett nummer.");
             return;
         }
 
-        bool cancelled = _repository.CancelBooking(id);
+        var cancelled = _repository.CancelBooking(id);
         Console.WriteLine(cancelled ? "Bokningen är avbokad." : "Hittade ingen bokning med det numret.");
     }
 
     private void BookRoom()
     {
-        Console.WriteLine("Kommer snart!");
+        Console.Write("Gästnamn: ");
+        var name = Console.ReadLine() ?? "";
+        Console.Write("E-post: ");
+        var email = Console.ReadLine() ?? "";
+
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            Console.WriteLine("namn måste fyllas i");
+            return;
+        }
+
+        Console.Write("Incheckning (YYYY-MM-DD): ");
+        if (!DateTime.TryParse(Console.ReadLine(), out var checkIn))
+        {
+            Console.WriteLine("Ogiltigt datum.");
+            return;
+        }
+
+        Console.Write("Utcheckning (YYYY-MM-DD): ");
+        if (!DateTime.TryParse(Console.ReadLine(), out var checkOut))
+        {
+            Console.WriteLine("Ogiltigt datum.");
+            return;
+        }
+
+        if (checkOut <= checkIn)
+        {
+            Console.WriteLine("Utcheckning måste vara efter incheckning");
+            return;
+        }
+
+        Console.WriteLine("Välj rum:");
+        ShowRooms();
+        Console.Write("Rumsnummer: ");
+        if (!int.TryParse(Console.ReadLine(), out var roomNumber))
+        {
+            Console.WriteLine("Skriv ett rumsnummer");
+            return;
+        }
+
+        var room = _repository.GetAllRooms().FirstOrDefault(r => r.RoomNumber == roomNumber);
+        if (room == null)
+        {
+            Console.WriteLine("Det rummet finns inte");
+            return;
+        }
+
+        var guest = new Guest { Name = name, Email = email };
+        var booking = _repository.AddBooking(guest, room, checkIn, checkOut);
+
+        var nights = (checkOut - checkIn).Days;
+        Console.WriteLine(
+            $"Bokning bekräftad! Totalt: {booking.TotalPrice():N0} kr ({nights} nätter x {room.PricePerNight:N0} kr)");
     }
 }

@@ -1,6 +1,7 @@
 # Exempel: en konsolmeny som använder ett repository
 
-Det här exemplet visar hur gränssnittet pratar med repositoryt, och inte med databasen direkt. Texten till användaren är på svenska.
+Det här exemplet visar hur gränssnittet pratar med repositoryt, och inte med databasen direkt. Texten till användaren är
+på svenska.
 
 Först kopplas delarna ihop:
 
@@ -9,7 +10,8 @@ using var context = new LibraryContext();
 IBookRepository repository = new BookRepository(context);
 ```
 
-Reflektion: gränssnittet känner bara till `IBookRepository`. Det är den raden som bestämmer vilken implementation som används.
+Reflektion: gränssnittet känner bara till `IBookRepository`. Det är den raden som bestämmer vilken implementation som
+används.
 
 Sedan menyn, som visas i en loop tills användaren väljer att avsluta:
 
@@ -53,7 +55,8 @@ while (running)
 }
 ```
 
-Reflektion: menyn sköter bara inmatning och utskrift. Logiken ligger i repositoryt, och klassen `Book` vet ingenting om konsolen.
+Reflektion: menyn sköter bara inmatning och utskrift. Logiken ligger i repositoryt, och klassen `Book` vet ingenting om
+konsolen.
 
 ## Hela koden
 
