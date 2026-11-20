@@ -28,7 +28,7 @@ class Guest {
     +Name : string
     +Email : string
 }
-Guest "1" --> "*" Booking : gör
+Guest "1" --> "*" Booking 
 Room "1" --> "*" Booking
 RoomType "1" --> "*" Room
 @enduml
